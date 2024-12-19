@@ -38,4 +38,8 @@ public String createPayloadBookingAsString(){
     BookingResponse bookingResponse = gson.fromJson(responseString, BookingResponse.class);
     return bookingResponse;
     }
+
+    public void createToken(){
+
+    }
 }
