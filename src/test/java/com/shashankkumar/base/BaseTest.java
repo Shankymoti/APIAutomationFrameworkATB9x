@@ -44,4 +44,21 @@ public class BaseTest {
 
     }
 
+
+    // getToken() is common to most of the Request. so we write in BaseTest class
+    public String getToken(){
+        requestSpecification = RestAssured.given()
+                .baseUri(APIConstants.BASE_URL)
+                .basePath(APIConstants.AUTH_URL);
+
+        // Setting the payload
+        String payload = payloadManager.setAuthPayload();
+
+        //Get the token
+        response = requestSpecification.contentType(ContentType.JSON).body(payload).when().post();
+
+        //Extract the token
+        String token = payloadManager.getTokenFromJSON(response.asString());
+        return token;
+    }
 }

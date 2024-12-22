@@ -1,9 +1,7 @@
 package com.shashankkumar.modules;
 
 import com.google.gson.Gson;
-import com.shashankkumar.pojos.Booking;
-import com.shashankkumar.pojos.BookingResponse;
-import com.shashankkumar.pojos.Bookingdates;
+import com.shashankkumar.pojos.*;
 
 public class PayloadManager {
 
@@ -39,7 +37,54 @@ public String createPayloadBookingAsString(){
     return bookingResponse;
     }
 
-    public void createToken(){
 
+    public Booking getResponseFromJSON(String getResponse){
+    gson = new Gson();
+    Booking booking = gson.fromJson(getResponse, Booking.class);
+    return booking;
+    }
+
+    // -------------- TOKEN ---------------------
+    // Java to Json
+    public String setAuthPayload(){
+        Auth auth = new Auth();
+        auth.setUsername("admin");
+        auth.setPassword("password123");
+        System.out.println(auth);
+        gson =  new Gson();
+        String jsonStringPayload = gson.toJson(auth);
+        System.out.println(auth);
+        return  jsonStringPayload;
+    }
+
+
+    //Json to Java
+    public String  getTokenFromJSON(String tokenResponse){
+    gson = new Gson();
+        TokenResponse tokenResponse1 = gson.fromJson(tokenResponse,TokenResponse.class);
+        return tokenResponse1.getToken(); // here only one field is there. So directly return token
+
+    }
+
+
+    public String fullUpdatePayloadAsString(){
+
+        Booking booking = new Booking();
+        booking.setFirstname("Pramod");
+        booking.setLastname("Singh");
+        booking.setTotalprice(1234);
+        booking.setDepositpaid(true);
+        Bookingdates bookingdates = new Bookingdates();
+        bookingdates.setCheckin("2024-02-01");
+        bookingdates.setCheckout("2024-02-01");
+        booking.setBookingdates(bookingdates);
+        booking.setAdditionalneeds("Breakfast");
+
+        System.out.println(booking);
+
+        gson =  new Gson();
+        String jsonStringPayload = gson.toJson(booking);
+        System.out.println(jsonStringPayload);
+        return jsonStringPayload;
     }
 }
