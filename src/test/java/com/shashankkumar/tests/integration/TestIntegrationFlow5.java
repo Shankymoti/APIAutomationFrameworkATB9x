@@ -50,7 +50,7 @@ public class TestIntegrationFlow5 extends BaseTest {
 
     }
 
-    @Test(dependsOnMethods = "testCreateBooking", priority = 1)
+    @Test(priority = 2)
     @Owner("Shashank")
     @Description("TC#INT1 Steps 1 : Update Booking")
     public void testUpdate(ITestContext iTestContext) {
