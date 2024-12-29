@@ -29,6 +29,8 @@ public class TestIntegrationFlow3 extends BaseTest {
 
         validatableResponse = response.then().log().all();
         validatableResponse.statusCode(200);
+                // we can also get or parse first booking id by jsonPath
+        //Integer bookingId = response.jsonPath().getInt("[0].bookingid");
 
         List<AllBookingResponse> allBookingResponse = payloadManager.getABooking(response.asString());
 
